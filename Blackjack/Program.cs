@@ -10,12 +10,14 @@ namespace Blackjack
             bool quit = false;
             ConsoleKey choice;
             while (!quit)
-            {   
+            {
                 //Menu goes here!
+                Console.WriteLine("Menu");
                 choice = Console.ReadKey().Key;
                 switch (choice)
                 {
                     case ConsoleKey.D1: // Start game
+                        Game();
                         break;
                     case ConsoleKey.D2: // Show previous winner
                         break;
@@ -31,6 +33,47 @@ namespace Blackjack
         {
             List<int> player = new List<int>();
             List<int> bank = new List<int>();
+            for(int i = 0; i < 2; i++)
+            {
+                player.Add(DealCard());
+                bank.Add(DealCard());
+            }
+            bool draKort = true;
+            while (draKort)
+            {
+                Console.WriteLine("Dra Kort");
+                if (Bust(player))
+                {
+                    Console.WriteLine("Busted");
+                    return "Banken vann!";
+                }else if (TwentyOne(player))
+                {
+                    Console.WriteLine("victory");
+                    return "Spelaren vann!";
+                }
+                else
+                {
+                    bool inputCheck = true;
+                    while (inputCheck)
+                    {
+                        Console.WriteLine("Dra ett till kort? j/n");
+                        switch (Console.ReadKey().Key)
+                        {
+                            case ConsoleKey.J:
+                                player.Add(DealCard());
+                                inputCheck = false;
+                                break;
+                            case ConsoleKey.N:
+                                inputCheck = false;
+                                draKort = false;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+            Console.WriteLine("End");
 
             return "player";
         }
