@@ -12,16 +12,17 @@ namespace Blackjack
             while (!quit)
             {
                 //Menu goes here!
-                Console.WriteLine("Menu");
-                choice = Console.ReadKey().Key;
+                choice = Meny.BlackjackMeny();
                 switch (choice)
                 {
                     case ConsoleKey.D1: // Start game
                         Game();
                         break;
                     case ConsoleKey.D2: // Show previous winner
+                        Meny.LastContestant(lastWinner);
                         break;
                     case ConsoleKey.D3: //show rules?
+                        Meny.Rules();
                         break;
                     case ConsoleKey.D4: //Exit;
                         quit = true;
