@@ -6,7 +6,7 @@ namespace Blackjack
     {
         static void Main(string[] args)
         {
-            String lastWinner = "Play a game first muppet!";
+            String lastWinner = "The Chosen One";
             bool quit = false;
             ConsoleKey choice;
             while (!quit)
